@@ -1,15 +1,16 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { LoginDto } from './dtos/login.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  async login(@Body() body: { login: string; password: string }) {
+  async login(@Body() loginDto: LoginDto) {
     const admin = await this.authService.validateAdmin(
-      body.login,
-      body.password,
+      loginDto.login,
+      loginDto.password,
     );
     if (!admin) {
       return 'Credentials are not valid';
