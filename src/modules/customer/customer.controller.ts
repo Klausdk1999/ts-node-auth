@@ -6,18 +6,23 @@ import {
   Put,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
-import { Customer, Prisma } from '@prisma/client';
+import { Customer } from '@prisma/client';
+import {
+  CreateCustomerDto,
+  UpdateCustomerDto,
+} from './dtos/create-customer.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('customers')
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Post()
-  create(
-    @Body() createCustomerDto: Prisma.CustomerCreateInput,
-  ): Promise<Customer> {
+  create(@Body() createCustomerDto: CreateCustomerDto): Promise<Customer> {
     return this.customerService.create(createCustomerDto);
   }
 
@@ -34,7 +39,7 @@ export class CustomerController {
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() updateCustomerDto: Prisma.CustomerUpdateInput,
+    @Body() updateCustomerDto: UpdateCustomerDto,
   ): Promise<Customer> {
     return this.customerService.update(id, updateCustomerDto);
   }
