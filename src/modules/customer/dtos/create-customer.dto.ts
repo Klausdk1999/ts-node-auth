@@ -1,4 +1,4 @@
-import { IsString, IsArray, ArrayUnique } from 'class-validator';
+import { IsString, IsArray, ArrayUnique, IsDateString } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateCustomerDto {
@@ -8,12 +8,15 @@ export class CreateCustomerDto {
   @IsArray()
   @ArrayUnique()
   @IsString({ each: true })
-  email: string[];
+  emails: string[];
 
   @IsArray()
   @ArrayUnique()
   @IsString({ each: true })
-  phone: string[];
+  phones: string[];
+
+  @IsDateString()
+  registerDate: Date;
 }
 
 export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {}

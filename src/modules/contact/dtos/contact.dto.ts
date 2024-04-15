@@ -9,12 +9,12 @@ export class CreateContactDto {
   @IsArray()
   @ArrayUnique()
   @IsEmail({}, { each: true })
-  email: string[];
+  emails: string[];
 
   @IsArray()
   @ArrayUnique()
   @IsString({ each: true })
-  phone: string[];
+  phones: string[];
 
   @IsString()
   customerId: string;

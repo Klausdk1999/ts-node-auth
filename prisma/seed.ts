@@ -10,7 +10,7 @@ async function main() {
 
   const admin = await prisma.admin.create({
     data: {
-      login: 'firstadmin',
+      login: 'admin',
       password: hashedPassword,
     },
   });
@@ -20,20 +20,20 @@ async function main() {
   const customer = await prisma.customer.create({
     data: {
       fullname: 'KDK Sistemas LTDA',
-      email: ['jkdk@example.com'],
-      phone: ['1234567890'],
+      emails: ['jkdk@example.com'],
+      phones: ['1234567890'],
       registerDate: new Date(),
       contacts: {
         create: [
           {
             name: 'Klaus Kupper',
-            email: ['klaus.1@example.com', 'klaus.2@example.com'],
-            phone: ['0987654321'],
+            emails: ['klaus.1@example.com', 'klaus.2@example.com'],
+            phones: ['0987654321'],
           },
           {
             name: 'Klaus Kupper Jr.',
-            email: ['Jr.1@example.com'],
-            phone: ['1122334455'],
+            emails: ['Jr.1@example.com'],
+            phones: ['1122334455'],
           },
         ],
       },
