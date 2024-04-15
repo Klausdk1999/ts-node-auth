@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CustomerRepository } from './customer.repository';
-import { Customer, Prisma } from '@prisma/client';
+import { Customer } from '@prisma/client';
+import {
+  CreateCustomerDto,
+  UpdateCustomerDto,
+} from './dtos/create-customer.dto';
 
 @Injectable()
 export class CustomerService {
   constructor(private customerRepository: CustomerRepository) {}
 
-  create(data: Prisma.CustomerCreateInput): Promise<Customer> {
+  create(data: CreateCustomerDto): Promise<Customer> {
     return this.customerRepository.create(data);
   }
 
@@ -18,7 +22,7 @@ export class CustomerService {
     return this.customerRepository.findOne(id);
   }
 
-  update(id: string, data: Prisma.CustomerUpdateInput): Promise<Customer> {
+  update(id: string, data: UpdateCustomerDto): Promise<Customer> {
     return this.customerRepository.update(id, data);
   }
 

@@ -10,23 +10,25 @@ datasource db {
 model Admin {
   id       String    @id @default(uuid())
   login    String @unique
-  password String
+  password String  
+  registerDate DateTime   @default(now())
 }
 
 model Customer {
   id           String        @id @default(uuid())
   fullname     String
-  email        String[]     @unique
-  phone        String[]     @unique
+  emails        String[]     @unique
+  phones       String[]     @unique
   registerDate DateTime   @default(now())
   contacts     Contact[]
 }
 
 model Contact {
   id        String      @id @default(uuid())
-  name      String
-  email     String[]
-  phone     String[]
+  fullname      String
+  emails     String[]
+  phones     String[]
+  registerDate DateTime   @default(now())
   customerId String
   customer  Customer @relation(fields: [customerId], references: [id])
 }
