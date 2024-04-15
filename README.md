@@ -4,7 +4,7 @@
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
-  
+
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
@@ -22,15 +22,34 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descrição
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Projeto de API RESTful para gerenciamento de clientes e contatos com autenticação.
+
+## Requisitos
+
+- **Node.js**: Baixe e instale o Node.js, incluindo o gerenciador de pacotes npm, no site [nodejs.org](https://nodejs.org/).
+- **PostgreSQL**: Baixe e instale o PostgreSQL, disponível no site [postgresql.org](https://www.postgresql.org/).
 
 ## Installation
 
-```bash
-$ npm install
-```
+- Clone o repositório
+- Execute o comando `npm install` para instalar as dependências do projeto.
+- Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis de ambiente, siga como exemplo o arquivo .env.example.
+  Prisma:
+- Execute o comando `npx prisma migrate dev` para criar as tabelas no banco de dados.
+- Execute o comando `npx prisma db seed` para popular as tabelas com dados de exemplo.
+- Execute o comando `npx prisma generate` para gerar os arquivos de tipos do Prisma.
+
+## Executando o projeto
+
+- Execute o comando `npm run start` para iniciar o servidor de desenvolvimento. Navegue até `http://localhost:3000/`.
+- Na pasta /documentation, você encontrará exemplos de requisições para a API, que podem ser importados no Insomnia para testes.
+
+
+
+
 
 ## Running the app
 
@@ -64,10 +83,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Author - Klaus Dieter Kupper
 - Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
-  Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
