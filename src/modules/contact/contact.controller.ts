@@ -13,7 +13,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateContactDto, UpdateContactDto } from './dtos/contact.dto';
 
 @UseGuards(JwtAuthGuard)
-@Controller('customers/:customerId/contact')
+@Controller('customers/:customerId/contacts')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
