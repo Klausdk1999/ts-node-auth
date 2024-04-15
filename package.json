@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "prisma:seed": "ts-node prisma/seed.ts",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
