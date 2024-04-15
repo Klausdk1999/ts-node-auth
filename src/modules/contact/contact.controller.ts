@@ -13,18 +13,21 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateContactDto, UpdateContactDto } from './dtos/contact.dto';
 
 @UseGuards(JwtAuthGuard)
-@Controller('contacts')
+@Controller('customers/:customerId/contact')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
   @Post()
-  create(@Body() createContactDto: CreateContactDto) {
-    return this.contactService.create(createContactDto);
+  create(
+    @Param('customerId') customerId: string,
+    @Body() createContactDto: CreateContactDto,
+  ) {
+    return this.contactService.create(createContactDto, customerId);
   }
 
   @Get()
-  findAll() {
-    return this.contactService.findAll();
+  findAll(@Param('customerId') customerId: string) {
+    return this.contactService.findAll(customerId);
   }
 
   @Get(':id')

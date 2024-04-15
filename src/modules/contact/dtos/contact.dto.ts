@@ -4,7 +4,7 @@ import { IsString, IsArray, ArrayUnique, IsEmail } from 'class-validator';
 
 export class CreateContactDto {
   @IsString()
-  name: string;
+  fullname: string;
 
   @IsArray()
   @ArrayUnique()
@@ -15,9 +15,21 @@ export class CreateContactDto {
   @ArrayUnique()
   @IsString({ each: true })
   phones: string[];
+}
 
+export class CreateContactFields {
   @IsString()
-  customerId: string;
+  fullname: string;
+
+  @IsArray()
+  @ArrayUnique()
+  @IsEmail({}, { each: true })
+  emails: string[];
+
+  @IsArray()
+  @ArrayUnique()
+  @IsString({ each: true })
+  phones: string[];
 }
 
 export class UpdateContactDto extends PartialType(CreateContactDto) {}

@@ -7,12 +7,17 @@ import { CreateContactDto, UpdateContactDto } from './dtos/contact.dto';
 export class ContactRepository {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: CreateContactDto): Promise<Contact> {
-    return this.prisma.contact.create({ data });
+  async create(data: CreateContactDto, customerId: string): Promise<Contact> {
+    return this.prisma.contact.create({
+      data: {
+        ...data,
+        customer: { connect: { id: customerId } },
+      },
+    });
   }
 
-  async findAll(): Promise<Contact[]> {
-    return this.prisma.contact.findMany();
+  async findAllByCustomer(customerId: string): Promise<Contact[]> {
+    return this.prisma.contact.findMany({ where: { customerId } });
   }
 
   async findOne(id: string): Promise<Contact | null> {

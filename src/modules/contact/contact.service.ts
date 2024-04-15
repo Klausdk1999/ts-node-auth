@@ -7,12 +7,12 @@ import { CreateContactDto, UpdateContactDto } from './dtos/contact.dto';
 export class ContactService {
   constructor(private contactRepository: ContactRepository) {}
 
-  create(data: CreateContactDto): Promise<Contact> {
-    return this.contactRepository.create(data);
+  create(data: CreateContactDto, customerId: string): Promise<Contact> {
+    return this.contactRepository.create(data, customerId);
   }
 
-  findAll(): Promise<Contact[]> {
-    return this.contactRepository.findAll();
+  findAll(customerId: string): Promise<Contact[]> {
+    return this.contactRepository.findAllByCustomer(customerId);
   }
 
   findOne(id: string): Promise<Contact | null> {

@@ -25,7 +25,7 @@ model Customer {
 
 model Contact {
   id        String      @id @default(uuid())
-  name      String
+  fullname      String
   emails     String[]
   phones     String[]
   registerDate DateTime   @default(now())

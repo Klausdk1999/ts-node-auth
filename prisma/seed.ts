@@ -26,12 +26,12 @@ async function main() {
       contacts: {
         create: [
           {
-            name: 'Klaus Kupper',
+            fullname: 'Klaus Kupper',
             emails: ['klaus.1@example.com', 'klaus.2@example.com'],
             phones: ['0987654321'],
           },
           {
-            name: 'Klaus Kupper Jr.',
+            fullname: 'Klaus Kupper Jr.',
             emails: ['Jr.1@example.com'],
             phones: ['1122334455'],
           },

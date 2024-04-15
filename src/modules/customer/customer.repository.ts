@@ -11,11 +11,20 @@ export class CustomerRepository {
   }
 
   async findAll() {
-    return this.prisma.customer.findMany();
+    return this.prisma.customer.findMany({
+      include: {
+        contacts: true,
+      },
+    });
   }
 
   async findOne(id: string) {
-    return this.prisma.customer.findUnique({ where: { id } });
+    return this.prisma.customer.findUnique({
+      where: { id },
+      include: {
+        contacts: true,
+      },
+    });
   }
 
   async update(id: string, data: Prisma.CustomerUpdateInput) {
@@ -23,6 +32,11 @@ export class CustomerRepository {
   }
 
   async remove(id: string) {
-    return this.prisma.customer.delete({ where: { id } });
+    await this.prisma.contact.deleteMany({
+      where: { customerId: id },
+    });
+    return this.prisma.customer.delete({
+      where: { id },
+    });
   }
 }
